@@ -5,6 +5,7 @@ import android.content.Context
 import android.support.multidex.MultiDex
 import android.support.v7.app.AppCompatDelegate
 import com.reconnect.refuge.di.components.AppComponent
+import com.reconnect.refuge.di.components.DaggerAppComponent
 import com.reconnect.refuge.di.modules.AppModule
 
 /**

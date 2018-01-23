@@ -1,8 +1,8 @@
 package com.reconnect.refuge.ui.main
 
-import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.View
+import com.reconnect.refuge.R
 import com.reconnect.refuge.ui.base.BaseActivity
 import javax.inject.Inject
 

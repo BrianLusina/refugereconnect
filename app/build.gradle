@@ -20,6 +20,12 @@ android {
         multiDexEnabled = true
         vectorDrawables.useSupportLibrary = true
         testApplicationId = "com.reconnect.refuge.test"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
     }
 
     buildTypes {
@@ -88,6 +94,7 @@ android {
 
         androidTest{
             java.srcDirs += "src/main/kotlin"
+            assets.srcDirs += files("$projectDir/schemas".toString())
         }
 
         test{
@@ -138,6 +145,8 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
+    implementation "org.jetbrains.anko:anko-commons:$anko_version"
+
     // dagger
     implementation "com.google.dagger:dagger-android-support:$daggerVersion"
     implementation "com.google.dagger:dagger:$daggerVersion"
@@ -160,6 +169,8 @@ dependencies {
 
     // retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitAdapterVersion"
 
     // test dependencies
 

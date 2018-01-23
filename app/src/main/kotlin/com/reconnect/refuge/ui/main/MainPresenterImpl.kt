@@ -9,19 +9,16 @@ import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
 /**
- * @author lusinabrian on 06/11/17.
+ * @author lusinabrian
  * @Notes Main presenter implementation
  */
 class MainPresenterImpl<V : MainView>
 @Inject
 constructor(val dataManager: DataManager, val schedulerProvider: SchedulerProvider, compositeDisposable: CompositeDisposable): MainPresenter<V>, BasePresenterImpl<V>(dataManager, schedulerProvider, compositeDisposable){
 
-    // fixme: make key unique
-    private val sharedPrefsKey = "emojifyme"
-
     override fun onAttach(baseView: V) {
         super.onAttach(baseView)
-        baseView.setupViewListeners()
+
     }
 
 

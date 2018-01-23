@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.reconnect.refuge.app.RefugeApp
 import com.reconnect.refuge.di.components.ActivityComponent
+import com.reconnect.refuge.di.components.DaggerActivityComponent
 import com.reconnect.refuge.di.modules.ActivityModule
 
 /**
