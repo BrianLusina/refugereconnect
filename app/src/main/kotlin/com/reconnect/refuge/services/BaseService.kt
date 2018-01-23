@@ -3,6 +3,7 @@ package com.reconnect.refuge.services
 import android.app.Service
 import android.content.Intent
 import android.os.IBinder
+import com.reconnect.refuge.di.components.DaggerServiceComponent
 import com.reconnect.refuge.di.components.ServiceComponent
 import com.reconnect.refuge.di.modules.ServiceModule
 

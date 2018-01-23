@@ -27,7 +27,7 @@ interface UserDao {
 
     // UPDATE
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    fun updateUser(userEntity: UserEntity): Long
+    fun updateUser(userEntity: UserEntity): Int
 
     // DELETE
     @Delete
