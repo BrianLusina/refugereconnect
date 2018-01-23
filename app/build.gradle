@@ -1,0 +1,183 @@
+apply plugin: "com.android.application"
+
+apply plugin: "kotlin-android"
+
+apply plugin: "kotlin-android-extensions"
+apply plugin: "kotlin-kapt"
+
+// necessary import for ABI
+import com.android.build.OutputFile
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.reconnect.refuge"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled = true
+        vectorDrawables.useSupportLibrary = true
+        testApplicationId = "com.reconnect.refuge.test"
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            useProguard false
+            applicationIdSuffix ".debug"
+            resValue "string", "app_name", "4GR-Dev"
+            testCoverageEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguardTest-rules.pro'
+        }
+
+        release {
+            minifyEnabled true
+            shrinkResources true
+            resValue "string", "app_name", "4GR"
+            testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguardTest-rules.pro'
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+        }
+    }
+
+    /**
+     * The aapt tool may inflate PNG files that have already been compressed.
+     * To prevent this, you can use the cruncherEnabled flag in Gradle to disable this
+     * process for PNG files:
+     * */
+    aaptOptions {
+        cruncherEnabled = false
+    }
+
+    splits {
+        abi {
+            // Enables building multiple APKs per ABI.
+            enable rootProject.ext.enableSeparateBuildPerCPUArchitecture
+            universalApk rootProject.ext.enableUniversalApk
+
+            // By default all ABIs are included, so use reset() and include to specify that we only
+            // want APKs for x86, armeabi-v7a, and mips.
+            // Resets the list of ABIs that Gradle should create APKs for to none.
+            reset()
+
+            // Specifies a list of ABIs that Gradle should create APKs for.
+            include "armeabi", "armeabi-v7a", "arm64-v8a", "mips", "x86", "x86_64"
+        }
+    }
+
+    signingConfigs{
+        release{
+            keyAlias rootProject.ext.keystoreProperties["keyAlias"]
+            keyPassword rootProject.ext.keystoreProperties["keyPassword"]
+            storeFile rootProject.file(rootProject.ext.keystoreProperties["storeFile"])
+            storePassword rootProject.ext.keystoreProperties["storePassword"]
+        }
+    }
+
+    sourceSets {
+        main {
+            java.srcDirs += "src/main/kotlin"
+            res.srcDirs = [
+                    "src/main/res/layouts",
+                    "src/main/res"
+            ]
+        }
+
+        androidTest{
+            java.srcDirs += "src/main/kotlin"
+        }
+
+        test{
+            java.srcDirs += "src/main/kotlin"
+        }
+    }
+
+    // build multiple APKs per CPU architecture
+    applicationVariants.all { variant ->
+        // Assigns a different version code for each output APK
+        // other than the universal APK.
+        variant.outputs.all { output ->
+            // Stores the value of ext.abiCodes that is associated with the ABI for this variant.
+            // Determines the ABI for this variant and returns the mapped value.
+            def baseAbiVersionCode = rootProject.ext.abiCodes.get(output.getFilter(OutputFile.ABI))
+
+            // Because abiCodes.get() returns null for ABIs that are not mapped by ext.abiCodes,
+            // the following code does not override the version code for universal APKs.
+            // However, because we want universal APKs to have the lowest version code,
+            // this outcome is desirable.
+            if (baseAbiVersionCode != null) {
+                // Assigns the new version code to versionCodeOverride, which changes the version code
+                // for only the output APK, not for the variant itself. Skipping this step simply
+                // causes Gradle to use the value of variant.versionCode for the APK.
+                output.versionCodeOverride = baseAbiVersionCode * 1200 + variant.versionCode
+            } else {
+                // this will make sure universal apks have the lowest version code
+                output.versionCodeOverride = variant.versionCode
+            }
+        }
+    }
+
+    // Always show the result of every unit test, even if it passes.
+    testOptions.unitTests.all {
+        testLogging {
+            events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    // support dependencies
+    implementation "com.android.support:appcompat-v7:$supportLibVersion"
+    implementation "com.android.support.constraint:constraint-layout:$constraintLayout"
+    implementation "com.android.support:multidex:$multidexVersion"
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    // dagger
+    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
+    implementation "com.google.dagger:dagger:$daggerVersion"
+    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+
+    // GSON
+    implementation "com.google.code.gson:gson:$gsonVersion"
+
+    // Room
+    implementation "android.arch.persistence.room:runtime:$roomVersion"
+    implementation "android.arch.persistence.room:rxjava2:$roomVersion"
+    kapt "android.arch.persistence.room:compiler:$roomVersion"
+
+    // rxkotlin
+    implementation "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
+
+    // rx android
+    implementation "io.reactivex.rxjava2:rxandroid:$rxAndroid"
+
+    // retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+
+    // test dependencies
+
+    // mockito
+    testImplementation "org.mockito:mockito-core:$mockitoVersion"
+    androidTestImplementation "org.mockito:mockito-android:$mockitoVersion"
+
+    // jUnit Version
+    testImplementation "junit:junit:$jUnitVersion"
+
+    // instrumentation test dependencies
+
+    // test runner
+    androidTestImplementation "com.android.support.test:runner:$testRunner"
+
+    // espresso core
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$espressoCore"
+
+    // room test
+    androidTestImplementation "android.arch.persistence.room:testing:$roomVersion"
+}
