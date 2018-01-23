@@ -16,8 +16,8 @@ data class UserEntity(
         @ColumnInfo(name = "name")
         var name: String,
 
-        @ColumnInfo(name = "email")
-        var email: String,
+        @ColumnInfo(name = "refugee_id")
+        var refugeeId: String,
 
         @ColumnInfo(name = "phone_number")
         var phoneNumber: String,
