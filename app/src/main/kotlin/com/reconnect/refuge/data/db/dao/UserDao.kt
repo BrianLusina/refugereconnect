@@ -3,7 +3,6 @@ package com.reconnect.refuge.data.db.dao
 import android.arch.persistence.room.*
 import com.reconnect.refuge.data.db.entities.UserEntity
 import io.reactivex.Flowable
-import org.intellij.lang.annotations.Flow
 
 /**
  * @author lusinabrian on 08/08/17.
@@ -14,7 +13,7 @@ interface UserDao {
 
     // CREATE
     @Insert
-    fun insert(vararg userEntity: UserEntity): List<Long>
+    fun insertUser(vararg userEntity: UserEntity): List<Long>
 
     // READ
     @Query("select * from user")

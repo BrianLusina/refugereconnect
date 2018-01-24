@@ -2,7 +2,7 @@ package com.reconnect.refuge.di.components
 
 import com.reconnect.refuge.di.modules.ActivityModule
 import com.reconnect.refuge.di.scopes.ActivityScope
-import com.reconnect.refuge.ui.main.MainActivity
+import com.reconnect.refuge.ui.personalinfo.PersonalInfoActivity
 import dagger.Component
 
 /**
@@ -13,5 +13,5 @@ import dagger.Component
 @Component(modules = [(ActivityModule::class)], dependencies = [(AppComponent::class)])
 interface ActivityComponent {
 
-    fun injectMain(mainActivity: MainActivity)
+    fun injectPersonalInfo(personalInfoActivity: PersonalInfoActivity)
 }

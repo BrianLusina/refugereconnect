@@ -3,9 +3,9 @@ package com.reconnect.refuge.di.modules
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import com.reconnect.refuge.di.scopes.ActivityScope
-import com.reconnect.refuge.ui.main.MainPresenter
-import com.reconnect.refuge.ui.main.MainPresenterImpl
-import com.reconnect.refuge.ui.main.MainView
+import com.reconnect.refuge.ui.personalinfo.PersonalInfoPresenter
+import com.reconnect.refuge.ui.personalinfo.PersonalInfoPresenterImpl
+import com.reconnect.refuge.ui.personalinfo.PersonalInfoView
 import dagger.Module
 import dagger.Provides
 
@@ -29,7 +29,7 @@ class ActivityModule (private val mActivity: AppCompatActivity){
 
     @Provides
     @ActivityScope
-    fun provideMainPresenter(mainPresenter: MainPresenterImpl<MainView>): MainPresenter<MainView> {
-        return mainPresenter
+    fun provideMainPresenter(personalInfoPresenter: PersonalInfoPresenterImpl<PersonalInfoView>): PersonalInfoPresenter<PersonalInfoView> {
+        return personalInfoPresenter
     }
 }
