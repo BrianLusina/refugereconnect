@@ -6,7 +6,10 @@ import com.reconnect.refuge.R
 import com.reconnect.refuge.ui.base.BaseActivity
 import javax.inject.Inject
 
-
+/**
+ * Main entry of application
+ * This will simply be used to collect personal information from the Refugee
+ * */
 class MainActivity : BaseActivity(), MainView, View.OnClickListener {
 
     @Inject

@@ -13,8 +13,11 @@ data class UserEntity(
         @PrimaryKey(autoGenerate = true)
         var id: Long,
 
-        @ColumnInfo(name = "name")
-        var name: String,
+        @ColumnInfo(name = "first_name")
+        var first_name: String,
+
+        @ColumnInfo(name = "last_name")
+        var last_name : String,
 
         @ColumnInfo(name = "refugee_id")
         var refugeeId: String,

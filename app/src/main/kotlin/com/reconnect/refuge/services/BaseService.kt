@@ -14,7 +14,7 @@ import com.reconnect.refuge.di.modules.ServiceModule
  */
 abstract class BaseService : Service() {
 
-    val baseServiceComponent: ServiceComponent by lazy {
+    val serviceComponent: ServiceComponent by lazy {
         DaggerServiceComponent.builder()
                 .serviceModule(ServiceModule(this))
                 .build()
