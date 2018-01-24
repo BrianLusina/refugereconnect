@@ -19,9 +19,12 @@ constructor(val dataManager: DataManager, val schedulerProvider: SchedulerProvid
         baseView.setUpListeners()
     }
 
-    override fun onButtonNextClick(firstName: String, lastName: String, refugeeId: String, gender: String, phoneNumber: String) {
+    override fun onButtonNextClick(firstName: String, lastName: String, refugeeId: String, gender: String) {
         // store the data locally
-        //dataManager.storeUserData(firstName, lastName, refugeeId)
+        dataManager.storeUserData(firstName, lastName, refugeeId, gender)
+
+        // say cheese
+        baseView.proceedToCameraCapture()
     }
 
 }

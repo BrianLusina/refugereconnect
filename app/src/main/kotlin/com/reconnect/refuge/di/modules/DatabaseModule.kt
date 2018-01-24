@@ -3,6 +3,8 @@ package com.reconnect.refuge.di.modules
 import android.arch.persistence.room.Room
 import android.content.Context
 import com.reconnect.refuge.data.db.AppDatabase
+import com.reconnect.refuge.data.db.DbHelper
+import com.reconnect.refuge.data.db.DbHelperImpl
 import com.reconnect.refuge.data.db.dao.UserDao
 import com.reconnect.refuge.di.qualifiers.AppContextQualifier
 import com.reconnect.refuge.di.qualifiers.DatabaseQualifier
@@ -22,6 +24,12 @@ class DatabaseModule {
     @DatabaseQualifier
     fun provideDatabaseName(): String {
         return DATABASE_NAME
+    }
+
+    @Provides
+    @Singleton
+    fun provideDbHelper(dbHelper: DbHelperImpl) : DbHelper{
+        return dbHelper
     }
 
     @Provides

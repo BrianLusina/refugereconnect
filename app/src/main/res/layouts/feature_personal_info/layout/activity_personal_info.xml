@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/relative_layout_personal_info"
     android:layout_width="match_parent"
@@ -54,10 +53,10 @@
                 android:textColor="@color/colorPrimary"
                 android:textSize="18sp"
                 android:textStyle="bold"
+                app:layout_constraintHorizontal_bias="0.01"
                 app:layout_constraintLeft_toLeftOf="@id/guideline_left"
                 app:layout_constraintRight_toRightOf="@id/guideline_right"
-                app:layout_constraintTop_toTopOf="@id/guideline_top"
-                app:layout_constraintHorizontal_bias="0.01"/>
+                app:layout_constraintTop_toTopOf="@id/guideline_top" />
 
             <!--First name-->
             <android.support.design.widget.TextInputLayout
@@ -92,11 +91,11 @@
                 android:id="@+id/text_input_layout_last_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
                 android:paddingEnd="40dp"
                 android:paddingLeft="40dp"
                 android:paddingRight="40dp"
                 android:paddingStart="40dp"
-                android:layout_marginTop="25dp"
                 android:textColorHint="@color/color_secondary_text_dark_grey"
                 app:layout_constraintTop_toBottomOf="@+id/text_input_layout_first_name">
 
@@ -141,6 +140,55 @@
                     android:textSize="13sp" />
             </android.support.design.widget.TextInputLayout>
 
+            <!--Gender-->
+            <LinearLayout
+                android:id="@+id/text_input_layout_gender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:orientation="vertical"
+                android:paddingEnd="40dp"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp"
+                android:paddingStart="40dp"
+                android:textColorHint="@color/color_secondary_text_dark_grey"
+                app:layout_constraintLeft_toLeftOf="@id/guideline_left"
+                app:layout_constraintRight_toRightOf="@id/guideline_right"
+                app:layout_constraintTop_toBottomOf="@+id/text_input_layout_refugee_id">
+
+                <TextView
+                    android:id="@+id/text_view_gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/title_text_gender" />
+
+                <!--check boxes for gender-->
+                <RadioGroup
+                    android:id="@+id/radio_group_gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="1dp"
+                    android:weightSum="2">
+
+                    <RadioButton
+                        android:id="@+id/radio_button_gender_male"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/label_radio_button_male" />
+
+                    <RadioButton
+                        android:id="@+id/radio_button_gender_female"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/label_radio_button_female" />
+
+                </RadioGroup>
+            </LinearLayout>
 
             <!--Next button-->
             <Button
@@ -153,7 +201,7 @@
                 android:textColor="@color/colorPrimaryDark"
                 app:layout_constraintLeft_toLeftOf="@id/guideline_left"
                 app:layout_constraintRight_toRightOf="@id/guideline_right"
-                app:layout_constraintTop_toBottomOf="@+id/text_input_layout_refugee_id" />
+                app:layout_constraintTop_toBottomOf="@+id/text_input_layout_gender" />
 
         </android.support.constraint.ConstraintLayout>
 

@@ -22,9 +22,6 @@ data class UserEntity(
         @ColumnInfo(name = "refugee_id")
         var refugeeId: String,
 
-        @ColumnInfo(name = "phone_number")
-        var phoneNumber: String,
-
         @ColumnInfo(name = "gender")
         var gender: String,
 
@@ -34,6 +31,6 @@ data class UserEntity(
         @ColumnInfo(name = "updated_at")
         var updatedAt: String,
 
-        @ColumnInfo(name = "profile_path")
-        var profilePath: String
+        @ColumnInfo(name = "photo_path")
+        var photoPath: String
 )

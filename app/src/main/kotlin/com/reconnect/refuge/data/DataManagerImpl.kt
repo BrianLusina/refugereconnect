@@ -3,6 +3,7 @@ package com.reconnect.refuge.data
 import android.graphics.Bitmap
 import android.net.Uri
 import com.reconnect.refuge.data.DataManager
+import com.reconnect.refuge.data.db.DbHelper
 import com.reconnect.refuge.data.file.FileHelper
 import com.reconnect.refuge.data.prefs.SharedPrefsHelper
 import java.io.File
@@ -15,7 +16,7 @@ import javax.inject.Singleton
  */
 @Singleton
 class DataManagerImpl @Inject constructor(
-        private val fileHelper: FileHelper, private val sharedPrefsHelper: SharedPrefsHelper): DataManager {
+        private val fileHelper: FileHelper, private val sharedPrefsHelper: SharedPrefsHelper, private val dbHelper: DbHelper): DataManager {
 
     override fun deleteImageFile(photoPath: String): Boolean {
         return fileHelper.deleteImageFile(photoPath)
@@ -36,5 +37,10 @@ class DataManagerImpl @Inject constructor(
 
     override fun getImageFilePath(imageFileKey: String): String {
         return sharedPrefsHelper.getImageFilePath(imageFileKey)
+    }
+
+
+    override fun storeUserData(firstName: String, lastName: String, refugeeId: String, gender: String) {
+        dbHelper.storeUserData(firstName, lastName, refugeeId, gender)
     }
 }

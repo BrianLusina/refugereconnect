@@ -3,9 +3,12 @@ package com.reconnect.refuge.ui.personalinfo
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import com.reconnect.refuge.R
 import com.reconnect.refuge.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_personal_info.*
+import org.jetbrains.anko.find
 import javax.inject.Inject
 
 /**
@@ -15,10 +18,12 @@ import javax.inject.Inject
  * This information will be used in the summary screen, where they will be allowed to edit the
  * information as need be.
  * */
-class PersonalInfoActivity : BaseActivity(), PersonalInfoView, View.OnClickListener {
+class PersonalInfoActivity : BaseActivity(), PersonalInfoView, View.OnClickListener, RadioGroup.OnCheckedChangeListener {
 
     @Inject
-    private lateinit var personalInfoPresenter: PersonalInfoPresenter<PersonalInfoView>
+    lateinit var personalInfoPresenter: PersonalInfoPresenter<PersonalInfoView>
+
+    var genderSelected = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +36,7 @@ class PersonalInfoActivity : BaseActivity(), PersonalInfoView, View.OnClickListe
 
     override fun setUpListeners() {
         button_next.setOnClickListener(this)
+        radio_group_gender.setOnCheckedChangeListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -62,11 +68,19 @@ class PersonalInfoActivity : BaseActivity(), PersonalInfoView, View.OnClickListe
 
                 // if the form is valid we call to store the data locally first
                 if(formValid){
-                    // personalInfoPresenter.onButtonNextClick(firstName, lastName, refugeeId)
+                    personalInfoPresenter.onButtonNextClick(firstName, lastName, refugeeId, genderSelected)
                 }
             }
         }
     }
 
+    override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
+        val radioBtn = find<RadioButton>(checkedId)
+        genderSelected = radioBtn.text.toString()
+    }
+
+    override fun proceedToCameraCapture() {
+        //startActivity<>()
+    }
 
 }

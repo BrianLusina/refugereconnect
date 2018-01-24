@@ -15,8 +15,7 @@ interface PersonalInfoPresenter<V : PersonalInfoView> : BasePresenter<V> {
      * @param lastName User's Last name
      * @param refugeeId User's refugee Id
      * @param gender User's gender
-     * @param phoneNumber User's phone number
      * */
-    fun onButtonNextClick(firstName : String, lastName : String, refugeeId : String, gender : String, phoneNumber: String)
+    fun onButtonNextClick(firstName : String, lastName : String, refugeeId : String, gender : String)
 
 }
