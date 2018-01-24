@@ -7,8 +7,10 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import com.reconnect.refuge.R
 import com.reconnect.refuge.ui.base.BaseActivity
+import com.reconnect.refuge.ui.cameracapture.CameraCaptureActivity
 import kotlinx.android.synthetic.main.activity_personal_info.*
 import org.jetbrains.anko.find
+import org.jetbrains.anko.startActivity
 import javax.inject.Inject
 
 /**
@@ -80,7 +82,7 @@ class PersonalInfoActivity : BaseActivity(), PersonalInfoView, View.OnClickListe
     }
 
     override fun proceedToCameraCapture() {
-        //startActivity<>()
+        startActivity<CameraCaptureActivity>()
     }
 
 }

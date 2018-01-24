@@ -3,7 +3,6 @@ package com.reconnect.refuge.data.db
 import com.reconnect.refuge.data.db.dao.UserDao
 import com.reconnect.refuge.data.db.entities.UserEntity
 import com.reconnect.refuge.utils.TIMESTAMP_FORMAT
-import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
