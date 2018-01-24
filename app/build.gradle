@@ -87,6 +87,7 @@ android {
             res.srcDirs = [
                     "src/main/res/layouts/feature_personal_info",
                     "src/main/res/layouts/feature_camera_capture",
+                    "src/main/res/layouts/feature_summary",
                     "src/main/res/layouts",
                     "src/main/res"
             ]

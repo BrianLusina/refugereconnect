@@ -2,7 +2,10 @@ package com.reconnect.refuge.di.modules
 
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
+import com.emojify.me.ui.main.CameraCapturePresenterImpl
 import com.reconnect.refuge.di.scopes.ActivityScope
+import com.reconnect.refuge.ui.cameracapture.CameraCapturePresenter
+import com.reconnect.refuge.ui.cameracapture.CameraCaptureView
 import com.reconnect.refuge.ui.personalinfo.PersonalInfoPresenter
 import com.reconnect.refuge.ui.personalinfo.PersonalInfoPresenterImpl
 import com.reconnect.refuge.ui.personalinfo.PersonalInfoView
@@ -14,7 +17,7 @@ import dagger.Provides
  * @Notes Activity Module
  */
 @Module
-class ActivityModule (private val mActivity: AppCompatActivity){
+class ActivityModule(private val mActivity: AppCompatActivity) {
 
     @Provides
     @ActivityScope
@@ -31,5 +34,11 @@ class ActivityModule (private val mActivity: AppCompatActivity){
     @ActivityScope
     fun provideMainPresenter(personalInfoPresenter: PersonalInfoPresenterImpl<PersonalInfoView>): PersonalInfoPresenter<PersonalInfoView> {
         return personalInfoPresenter
+    }
+
+    @Provides
+    @ActivityScope
+    fun provideCameraCapturePresenter(cameraCapturePresenter: CameraCapturePresenterImpl<CameraCaptureView>): CameraCapturePresenter<CameraCaptureView> {
+        return cameraCapturePresenter
     }
 }
