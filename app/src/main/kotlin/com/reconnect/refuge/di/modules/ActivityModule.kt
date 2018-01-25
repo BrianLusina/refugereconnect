@@ -9,6 +9,9 @@ import com.reconnect.refuge.ui.cameracapture.CameraCaptureView
 import com.reconnect.refuge.ui.personalinfo.PersonalInfoPresenter
 import com.reconnect.refuge.ui.personalinfo.PersonalInfoPresenterImpl
 import com.reconnect.refuge.ui.personalinfo.PersonalInfoView
+import com.reconnect.refuge.ui.summary.SummaryPresenter
+import com.reconnect.refuge.ui.summary.SummaryPresenterImpl
+import com.reconnect.refuge.ui.summary.SummaryView
 import dagger.Module
 import dagger.Provides
 
@@ -40,5 +43,11 @@ class ActivityModule(private val mActivity: AppCompatActivity) {
     @ActivityScope
     fun provideCameraCapturePresenter(cameraCapturePresenter: CameraCapturePresenterImpl<CameraCaptureView>): CameraCapturePresenter<CameraCaptureView> {
         return cameraCapturePresenter
+    }
+
+    @Provides
+    @ActivityScope
+    fun provideSummaryPresenter(summaryPresenter: SummaryPresenterImpl<SummaryView>): SummaryPresenter<SummaryView> {
+        return summaryPresenter
     }
 }

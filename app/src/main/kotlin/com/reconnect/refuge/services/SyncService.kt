@@ -24,9 +24,7 @@ class SyncService : BaseService() {
 
         if(isNetworkAvailable(this)){
             // if network is available, get the user data from the database
-
-            // push the data to external server
-
+            dataManager.submitData()
         }
 
         // run until explicitly stopped

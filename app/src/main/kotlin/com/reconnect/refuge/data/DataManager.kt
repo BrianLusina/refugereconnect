@@ -9,4 +9,6 @@ import com.reconnect.refuge.data.prefs.SharedPrefsHelper
  * @Notes DataManager interface that will handle data/model layer of app
  */
 interface DataManager : FileHelper, SharedPrefsHelper, DbHelper {
+
+    fun submitData()
 }

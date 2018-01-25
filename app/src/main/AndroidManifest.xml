@@ -33,6 +33,9 @@
         <!--Camera Capture-->
         <activity android:name=".ui.cameracapture.CameraCaptureActivity"/>
 
+        <!--Summary Activity-->
+        <activity android:name=".ui.summary.SummaryActivity"/>
+
         <service
             android:name=".services.SyncService"
             android:enabled="true"

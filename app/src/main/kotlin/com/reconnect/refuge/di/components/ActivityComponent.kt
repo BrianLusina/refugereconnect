@@ -4,6 +4,7 @@ import com.reconnect.refuge.di.modules.ActivityModule
 import com.reconnect.refuge.di.scopes.ActivityScope
 import com.reconnect.refuge.ui.cameracapture.CameraCaptureActivity
 import com.reconnect.refuge.ui.personalinfo.PersonalInfoActivity
+import com.reconnect.refuge.ui.summary.SummaryActivity
 import dagger.Component
 
 /**
@@ -17,4 +18,6 @@ interface ActivityComponent {
     fun injectPersonalInfo(personalInfoActivity: PersonalInfoActivity)
 
     fun injectCameraCapture(cameraCaptureActivity: CameraCaptureActivity)
+
+    fun injectSummary(summaryActivity : SummaryActivity)
 }
