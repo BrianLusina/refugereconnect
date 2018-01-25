@@ -1,0 +1,16 @@
+<resources>
+    <string name="title_personal_info">Personal Information</string>
+
+    <string name="hint_text_last_name">Last name</string>
+    <string name="hint_text_first_name">First name</string>
+    <string name="hint_text_refugee_id">Refugee ID</string>
+    <string name="hint_text_phone_number">Phone Number</string>
+    <string name="title_text_gender">Gender</string>
+
+    <string name="action_next">NEXT</string>
+
+    <string name="label_radio_button_female">Female</string>
+    <string name="label_radio_button_male">Male</string>
+
+    <string name="transition_name_fab">transition_auth_fab</string>
+</resources>

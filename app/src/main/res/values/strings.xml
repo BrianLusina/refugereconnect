@@ -1,3 +1,10 @@
 <resources>
+    <string name="error_network_offline">No Internet connection</string>
+    <string name="error_msg_first_name_text">First name is required</string>
+    <string name="error_msg_last_name_text">Last name is required</string>
+    <string name="error_msg_refugee_id">Refugee Id required</string>
+    <string name="error_msg_phone_number">Phone Number is invalid</string>
+    <string name="error_msg_gender">Gender is required</string>
 
+    <string name="action_snackbar_dismiss">Dismiss</string>
 </resources>

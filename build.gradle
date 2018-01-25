@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version = '1.2.10'
+    ext.kotlin_version = '1.2.21'
     repositories {
         google()
         jcenter()
@@ -75,6 +75,10 @@ ext {
 
     // retrofit
     retrofitVersion = "2.3.0"
+    retrofitAdapterVersion = "2.3.0"
+
+    //anko
+    anko_version = "0.10.4"
 
     // mockito version
     mockitoVersion = "2.13.0"

@@ -1,7 +1,5 @@
 apply plugin: "com.android.application"
-
 apply plugin: "kotlin-android"
-
 apply plugin: "kotlin-android-extensions"
 apply plugin: "kotlin-kapt"
 
@@ -20,6 +18,12 @@ android {
         multiDexEnabled = true
         vectorDrawables.useSupportLibrary = true
         testApplicationId = "com.reconnect.refuge.test"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
     }
 
     buildTypes {
@@ -81,6 +85,9 @@ android {
         main {
             java.srcDirs += "src/main/kotlin"
             res.srcDirs = [
+                    "src/main/res/layouts/feature_personal_info",
+                    "src/main/res/layouts/feature_camera_capture",
+                    "src/main/res/layouts/feature_summary",
                     "src/main/res/layouts",
                     "src/main/res"
             ]
@@ -88,6 +95,7 @@ android {
 
         androidTest{
             java.srcDirs += "src/main/kotlin"
+            assets.srcDirs += files("$projectDir/schemas".toString())
         }
 
         test{
@@ -133,10 +141,16 @@ dependencies {
 
     // support dependencies
     implementation "com.android.support:appcompat-v7:$supportLibVersion"
+    implementation "com.android.support:design:$supportLibVersion"
+    implementation "com.android.support:recyclerview-v7:$supportLibVersion"
+    implementation "com.android.support:cardview-v7:$supportLibVersion"
+
     implementation "com.android.support.constraint:constraint-layout:$constraintLayout"
     implementation "com.android.support:multidex:$multidexVersion"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    implementation "org.jetbrains.anko:anko-commons:$anko_version"
 
     // dagger
     implementation "com.google.dagger:dagger-android-support:$daggerVersion"
@@ -160,6 +174,8 @@ dependencies {
 
     // retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitAdapterVersion"
 
     // test dependencies
 
