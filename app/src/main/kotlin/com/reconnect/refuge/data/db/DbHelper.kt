@@ -1,5 +1,8 @@
 package com.reconnect.refuge.data.db
 
+import com.reconnect.refuge.data.db.entities.UserEntity
+import io.reactivex.Flowable
+
 /**
  * @author lusinabrian on 24/01/18.
  * @Notes Db Helper interface that will be used by Data manager to delegate tasks to the data store
@@ -15,4 +18,6 @@ interface DbHelper {
      * @param gender Gender of the given Refugee
      * */
     fun storeUserData(firstName: String, lastName: String, refugeeId: String, gender: String)
+
+    fun getUserEntity() : Flowable<UserEntity>
 }

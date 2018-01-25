@@ -3,6 +3,7 @@ package com.reconnect.refuge.data.db
 import com.reconnect.refuge.data.db.dao.UserDao
 import com.reconnect.refuge.data.db.entities.UserEntity
 import com.reconnect.refuge.utils.TIMESTAMP_FORMAT
+import io.reactivex.Flowable
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -25,5 +26,9 @@ class DbHelperImpl @Inject constructor(
 
         val userEntity = UserEntity(0, firstName, lastName, refugeeId, gender, formattedDate, "", "")
         userDao.insertUser(userEntity)
+    }
+
+    override fun getUserEntity(): Flowable<UserEntity> {
+        return userDao.getUsers()
     }
 }
